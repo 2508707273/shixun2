@@ -27,8 +27,8 @@ public class ProductByPageServlet extends HttpServlet{
 //		System.out.println("信息1");
 		int currentPage =Integer.parseInt(req.getParameter("currentPage"));
 		int pageSize = Integer.parseInt(req.getParameter("pageSize"));
-		System.out.println(currentPage);
-		System.out.println(pageSize);
+//		System.out.println(currentPage);
+//		System.out.println(pageSize);
 		PageBean<Product> pageBean1 = pService.showPageByPage(currentPage, pageSize);
 		req.setAttribute("pageBean1", pageBean1);
 		req.getRequestDispatcher("tables_product2.jsp").forward(req, resp);

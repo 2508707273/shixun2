@@ -22,7 +22,7 @@ public class delete_product extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int product_id =Integer.parseInt(req.getParameter("product_id"));
 		int currentPage = Integer.parseInt(req.getParameter("currentPage"));
-		System.out.println(product_id);
+//		System.out.println(product_id);
 		ProductService  productService=new ProductServiceImpl();
 		productService.deleteProduct(product_id);
 		resp.sendRedirect("product_page?currentPage="+currentPage+"&pageSize=5");	
