@@ -26,4 +26,10 @@ public interface Productdao {
 	 * @throws SQLException 
 	 */
 	int findProductCount() throws SQLException;
+	/**
+	 * 按照id删除某产品
+	 * @param id
+	 * @throws SQLException
+	 */
+	void deleteProduct(int id) throws SQLException;
 }

@@ -54,5 +54,16 @@ public class ProductServiceImpl implements ProductService {
 		pageBeans.setPageSize(pageSize);
 		return pageBeans;
 	}
+
+
+	@Override
+	public void deleteProduct(int id) {
+		try {
+			pt.deleteProduct(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 }

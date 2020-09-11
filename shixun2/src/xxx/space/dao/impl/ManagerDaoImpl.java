@@ -15,7 +15,8 @@ import xxx.space.util.Jdbc;
 public class ManagerDaoImpl implements Managedao {
 	PreparedStatement pst = null;
 	Manager manager = null;
-	ResultSet rs = null;
+	ResultSet rs = null;		
+	DbUtil dbUtil = new DbUtil();
 
 	public Manager selsctManageByIname(String name) throws SQLException {
 
@@ -25,8 +26,7 @@ public class ManagerDaoImpl implements Managedao {
 		
 //		Jdbc jdbc = new Jdbc();
 //		Connection conn1 = jdbc.getConnection();
-		
-		DbUtil dbUtil = new DbUtil();
+
 		Connection conn1= dbUtil.getConnection();
 
 		pst = conn1.prepareStatement(sql);
@@ -62,7 +62,6 @@ public class ManagerDaoImpl implements Managedao {
 //		Jdbc jdbc = new Jdbc();
 //		Connection conn1 = jdbc.getConnection();
 		
-		DbUtil dbUtil = new DbUtil();
 		Connection conn1= dbUtil.getConnection();
 		
 			pst = conn1.prepareStatement(sql);

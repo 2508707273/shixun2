@@ -36,7 +36,9 @@
 
 <link rel="stylesheet" href="assets/css/style.css">
 <style>
-
+a:link{
+	color:blue;
+}
 li{
     list-style: none;
 }
@@ -382,7 +384,8 @@ li{
 												<td>${product.selling_description }</td>
 												<td>${product.create_time }</td>
 												<td>${product.sale_time}</td>
-												<td>${product.id }</td>
+												<td><a href="${pageContext.request.contextPath}/delete_product?product_id=${product.id}&currentPage=${pageBean1.currentPage}">删除</a>&nbsp;&nbsp;
+												<a href="#">编辑</a></td>
 											</tr>
 										</c:forEach>
 

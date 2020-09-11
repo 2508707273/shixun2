@@ -49,4 +49,13 @@ public class ProductTest {
 		}
 		System.out.println("测试git");
 	}
+	@Test
+	public void Test4(){
+		try {
+			pt.deleteProduct(1000008);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

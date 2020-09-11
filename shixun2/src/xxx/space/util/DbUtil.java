@@ -31,7 +31,7 @@ public class DbUtil {
 		Connection connection=null;
 		try {
 			connection = dataSource.getConnection();
-			System.out.println("创建成功");
+//			System.out.println("创建成功");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

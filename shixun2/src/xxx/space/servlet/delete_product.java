@@ -16,21 +16,15 @@ import xxx.space.entity.Product;
 import xxx.space.service.ProductService;
 import xxx.space.service.impl.ProductServiceImpl;
 
-@WebServlet("/product_page")
-public class ProductByPageServlet extends HttpServlet{
+@WebServlet("/delete_product")
+public class delete_product extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		/*
-		 * 按页展示
-		 */
-		ProductService pService =new ProductServiceImpl();
-//		System.out.println("信息1");
-		int currentPage =Integer.parseInt(req.getParameter("currentPage"));
-		int pageSize = Integer.parseInt(req.getParameter("pageSize"));
-		System.out.println(currentPage);
-		System.out.println(pageSize);
-		PageBean<Product> pageBean1 = pService.showPageByPage(currentPage, pageSize);
-		req.setAttribute("pageBean1", pageBean1);
-		req.getRequestDispatcher("tables_product2.jsp").forward(req, resp);
+		int product_id =Integer.parseInt(req.getParameter("product_id"));
+		int currentPage = Integer.parseInt(req.getParameter("currentPage"));
+		System.out.println(product_id);
+		ProductService  productService=new ProductServiceImpl();
+		productService.deleteProduct(product_id);
+		resp.sendRedirect("product_page?currentPage="+currentPage+"&pageSize=5");	
 	}
 }

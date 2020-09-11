@@ -1,6 +1,12 @@
 package xxx.space.entity;
 
 import java.util.Date;
+/**
+ * insert into product VALUES(1000020,"苹果手机",1001,"图片",
+ * 1000,999,2222,1111,"产品详情","产品卖点","2020-09-11","2020-09-20")
+ * @author xiexi
+ *
+ */
 
 public class Product {
 	private int id;

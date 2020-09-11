@@ -18,4 +18,9 @@ public interface ProductService {
 	 * @return
 	 */
 	public PageBean<Product> showPageByPage(int currentPage,int pageSize);
+	/**
+	 * 删除产品
+	 * @param id
+	 */
+	void deleteProduct(int id);
 }
