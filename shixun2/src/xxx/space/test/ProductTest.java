@@ -29,5 +29,6 @@ public class ProductTest {
 	@Test
 	public void Test3(){
 		System.out.println(pt.findProductCount());
+		System.out.println("测试git");
 	}
 }
