@@ -73,6 +73,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Tables</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-table"></i><a href="product">产品管理</a></li>
+                            <li><i class="fa fa-table"></i><a href="product_page?currentPage=1&pageSize=5">产品管理2</a></li>
                              <li><i class="fa fa-table"></i><a href="manager">用户管理</a></li>
                         </ul>
                     </li>

@@ -47,6 +47,7 @@ public class ProductDaoImpl implements Productdao{
 				product.setSale_time(rs.getDate(12));
 				products.add(product);
 			}
+		dbUtil.closeConnection(conn1, pst, rs);
 		return products;
 	}
 
@@ -81,6 +82,7 @@ public class ProductDaoImpl implements Productdao{
 				product.setSale_time(rs.getDate(12));
 				products.add(product);
 			}
+		dbUtil.closeConnection(conn1, pst, rs);
 		return products;
 	}
 
@@ -100,6 +102,7 @@ public class ProductDaoImpl implements Productdao{
 			if(rs.next()){
 				n=rs.getInt(1);
 			}
+		dbUtil.closeConnection(conn1, pst, rs);
         return n;
 	}
 	

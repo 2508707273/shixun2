@@ -50,6 +50,7 @@ public class ManagerDaoImpl implements Managedao {
 			manager.setMemo(rs.getString(11));
 			manager.setCreate_time(rs.getDate(12));
 		}
+		dbUtil.closeConnection(conn1, pst, rs);
 		return manager;
 	}
 
@@ -83,7 +84,7 @@ public class ManagerDaoImpl implements Managedao {
 				manager.setCreate_time(rs.getDate(12));
 				managers.add(manager);
 			}
-
+		dbUtil.closeConnection(conn1, pst, rs);
 		return managers;
 	}
 }
