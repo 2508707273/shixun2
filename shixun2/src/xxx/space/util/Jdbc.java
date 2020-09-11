@@ -17,7 +17,7 @@ public class Jdbc {
 		}
 	}
 	public static Connection getConnection() {
-		System.out.println("链接成功");
+		//System.out.println("链接成功");
 		Connection conn=threadLocal.get();
 		if(conn==null) {
 			try {
