@@ -1,5 +1,6 @@
 package xxx.space.service.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import xxx.space.dao.Managedao;
@@ -16,7 +17,13 @@ public class ManagerServiceImpl implements ManagerService {
 	public Result login(String login_name, String login_pass) {
 		// TODO Auto-generated method stub
 		Result result = null;
-		Manager manager = md.selsctManageByIname(login_name);
+		Manager manager = null;
+		try {
+			manager = md.selsctManageByIname(login_name);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if (manager == null) {
 			System.out.println("用户未找到");
 			result = new Result(2, "用户名或密码错误");
@@ -32,7 +39,13 @@ public class ManagerServiceImpl implements ManagerService {
 
 	@Override
 	public List<Manager> ShowManager() {
-		List<Manager> managers = md.selectManager();
+		List<Manager> managers = null ;
+		try {
+			managers = md.selectManager();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return managers;
 	}
 

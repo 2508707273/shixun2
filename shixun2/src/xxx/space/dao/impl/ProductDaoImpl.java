@@ -11,6 +11,7 @@ import com.sun.org.apache.regexp.internal.recompile;
 
 import xxx.space.dao.Productdao;
 import xxx.space.entity.Product;
+import xxx.space.util.DbUtil;
 import xxx.space.util.Jdbc;
 
 public class ProductDaoImpl implements Productdao{
@@ -18,12 +19,16 @@ public class ProductDaoImpl implements Productdao{
 	PreparedStatement pst=null;
 	ResultSet rs = null;
 	@Override
-	public List<Product> SelectProduct() {
+	public List<Product> SelectProduct() throws SQLException {
+
+//    	Jdbc jdbc = new Jdbc();
+//        Connection conn1 = jdbc.getConnection();
+        
+        DbUtil dbUtil = new DbUtil();
+		Connection conn1= dbUtil.getConnection();
+        
 		String sql="SELECT * FROM `product`";
-    	Jdbc jdbc = new Jdbc();
-        Connection conn1 = jdbc.getConnection();
         List<Product> products= new ArrayList<Product>();
-        try {
 			pst=conn1.prepareStatement(sql);
 			rs=pst.executeQuery();
 			while(rs.next()){
@@ -42,21 +47,19 @@ public class ProductDaoImpl implements Productdao{
 				product.setSale_time(rs.getDate(12));
 				products.add(product);
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return products;
 	}
 
 	@Override
-	public List<Product> selectProductByPage(int currentPage, int pageSize) {
+	public List<Product> selectProductByPage(int currentPage, int pageSize) throws SQLException {
+//    	Jdbc jdbc = new Jdbc();
+//        Connection conn1 = jdbc.getConnection();
+        
+        DbUtil dbUtil = new DbUtil();
+		Connection conn1= dbUtil.getConnection();
+		
 		String sql="SELECT * FROM product limit ?,?";
-    	Jdbc jdbc = new Jdbc();
-        Connection conn1 = jdbc.getConnection();
         List<Product> products= new ArrayList<Product>();
-        try {
-
 			pst=conn1.prepareStatement(sql);
         	pst.setInt(1, (currentPage-1)*pageSize);
         	pst.setInt(2, pageSize);
@@ -78,32 +81,25 @@ public class ProductDaoImpl implements Productdao{
 				product.setSale_time(rs.getDate(12));
 				products.add(product);
 			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
 		return products;
 	}
 
 	@Override
-	public int findProductCount() {
+	public int findProductCount() throws SQLException {
 		String sql="SELECT count(*) from product";
-    	Jdbc jdbc = new Jdbc();
     	int n=0;
-        Connection conn1 = jdbc.getConnection();
-        try {
+    	
+//    	Jdbc jdbc = new Jdbc();
+//        Connection conn1 = jdbc.getConnection();
+        
+        DbUtil dbUtil = new DbUtil();
+		Connection conn1= dbUtil.getConnection();
+		
 			pst=conn1.prepareStatement(sql);
 			rs=pst.executeQuery();
 			if(rs.next()){
 				n=rs.getInt(1);
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
         return n;
 	}
 	

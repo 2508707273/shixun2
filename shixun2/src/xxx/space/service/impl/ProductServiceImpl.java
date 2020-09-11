@@ -1,5 +1,6 @@
 package xxx.space.service.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import xxx.space.dao.Productdao;
@@ -17,7 +18,13 @@ public class ProductServiceImpl implements ProductService {
 	 * @return
 	 */
 	public List<Product> showProducts(){
-		List<Product> products = pt.SelectProduct();
+		List<Product> products=null;
+		try {
+			products = pt.SelectProduct();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return products;
 	}
 
@@ -25,9 +32,21 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public PageBean<Product> showPageByPage(int currentPage, int pageSize) {
 		PageBean<Product> pageBeans = new PageBean<Product>();
-		int count = pt.findProductCount();
+		int count=0;
+		try {
+			count = pt.findProductCount();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		int totalPage = (int) Math.ceil(count*1.0/pageSize);
-		List<Product> products =pt.selectProductByPage(currentPage, pageSize);
+		List<Product> products = null;
+		try {
+			products = pt.selectProductByPage(currentPage, pageSize);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		pageBeans.setCount(count);
 		pageBeans.setCurrentPage(currentPage);
 		pageBeans.setLists(products);

@@ -1,5 +1,6 @@
 package xxx.space.test;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.junit.Test;
@@ -15,7 +16,13 @@ public class DaoTest {
 	@Test
 	public void Test(){
 		Managedao md=new ManagerDaoImpl();
-		Manager manager = md.selsctManageByIname("xxx");
+		Manager manager=null;
+		try {
+			manager = md.selsctManageByIname("xxx");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println(manager);
 		
 	}
@@ -27,7 +34,13 @@ public class DaoTest {
 	@Test
 	public void Test2(){
 		Managedao pt = new ManagerDaoImpl();
-		List<Manager> products = pt.selectManager();
+		List<Manager> products =null;
+		try {
+			products = pt.selectManager();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println(products.size());
 		for (Manager product : products) {
 			System.out.println(product);

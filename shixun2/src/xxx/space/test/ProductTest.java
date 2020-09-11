@@ -1,5 +1,6 @@
 package xxx.space.test;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.junit.Test;
@@ -12,7 +13,13 @@ public class ProductTest {
 	Productdao pt = new ProductDaoImpl();
 	@Test
 	public void Test(){
-		List<Product> products = pt.SelectProduct();
+		List<Product> products = null;
+		try {
+			products = pt.SelectProduct();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println(products.size());
 		for (Product product : products) {
 			System.out.println(product);
@@ -20,7 +27,13 @@ public class ProductTest {
 	}
 	@Test
 	public void Test1(){
-		List<Product> products =pt.selectProductByPage(1, 5);
+		List<Product> products = null;
+		try {
+			products = pt.selectProductByPage(1, 5);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println(products.size());
 		for (Product product : products) {
 			System.out.println(product);
@@ -28,7 +41,12 @@ public class ProductTest {
 	}
 	@Test
 	public void Test3(){
-		System.out.println(pt.findProductCount());
+		try {
+			System.out.println(pt.findProductCount());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println("测试git");
 	}
 }
