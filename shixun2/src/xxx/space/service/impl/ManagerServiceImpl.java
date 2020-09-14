@@ -8,6 +8,7 @@ import xxx.space.dao.impl.ManagerDaoImpl;
 import xxx.space.entity.Manager;
 import xxx.space.entity.Result;
 import xxx.space.service.ManagerService;
+import xxx.space.util.MD5Util;
 
 public class ManagerServiceImpl implements ManagerService {
 
@@ -24,10 +25,11 @@ public class ManagerServiceImpl implements ManagerService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		System.out.println(MD5Util.MD5Encode(login_pass, "UTF-8"));
 		if (manager == null) {
 			System.out.println("用户未找到");
 			result = new Result(2, "用户名或密码错误");
-		} else if (login_pass.equals(manager.getPwd())) {
+		} else if (MD5Util.MD5Encode(login_pass, "UTF-8").equals(manager.getPwd())) {
 			System.out.println("登陆成功");
 			result = new Result(1, "登录成功");
 		} else {
@@ -47,6 +49,28 @@ public class ManagerServiceImpl implements ManagerService {
 			e.printStackTrace();
 		}
 		return managers;
+	}
+
+	@Override
+	public Result register(Manager newManager) {
+		Result result = null;
+		Result result1 = null;
+		Manager manager = newManager;
+		String pass = newManager.getPwd();
+		manager.setPwd(MD5Util.MD5Encode(pass, "UTF-8"));
+		System.out.println(manager);
+		try {
+			result1 = md.insertManager(manager);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if (manager== null || result1.getState()==2) {
+			result = new Result(2,"用户注册失败");
+		}else {
+			result = new Result(result1.getState(), "注册成功");
+		}
+		return result;
 	}
 
 }

@@ -21,7 +21,6 @@
 	href="vendors/themify-icons/css/themify-icons.css">
 <link rel="stylesheet"
 	href="vendors/flag-icon-css/css/flag-icon.min.css">
-<link rel="stylesheet" href="vendors/selectFX/css/cs-skin-elastic.css">
 
 <link rel="stylesheet" href="assets/css/style.css">
 
@@ -69,7 +68,7 @@
 						
 						<div class="register-link m-t-15 text-center">
 							<p>
-								Don't have account ? <a href="#"> Sign Up Here</a>
+								Don't have account ? <a href="register.jsp"> Sign Up Here</a>
 							</p>
 						</div>
 					</form>
@@ -100,7 +99,6 @@
 		}
 	</script>
 	<script src="vendors/jquery/dist/jquery.min.js"></script>
-	<script src="vendors/popper.js/dist/umd/popper.min.js"></script>
 	<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="assets/js/main.js"></script>
 

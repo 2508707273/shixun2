@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import xxx.space.entity.Manager;
+import xxx.space.entity.Result;
 
 public interface Managedao {
     /**
@@ -19,4 +20,11 @@ public interface Managedao {
 	 * @throws SQLException 
 	 */
 	List<Manager> selectManager() throws SQLException;
+	/**
+	 * 注册
+	 * @param manager
+	 * @return
+	 * @throws SQLException
+	 */
+	Result insertManager(Manager manager) throws SQLException;
 }

@@ -32,4 +32,11 @@ public interface Productdao {
 	 * @throws SQLException
 	 */
 	void deleteProduct(int id) throws SQLException;
+	/**
+	 * 按id查找对应产品信息
+	 * @param id
+	 * @return 产品全信息
+	 * @throws SQLException
+	 */
+	Product selectProductByID(int id) throws SQLException;
 }
