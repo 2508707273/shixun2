@@ -16,15 +16,15 @@ import xxx.space.entity.Product;
 import xxx.space.service.ProductService;
 import xxx.space.service.impl.ProductServiceImpl;
 
-@WebServlet("/delete_product")
-public class delete_product extends HttpServlet{
+@WebServlet("/prodect_detail")
+public class ShowProdectDetailsServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		Product product = null;
 		int product_id =Integer.parseInt(req.getParameter("product_id"));
-		int currentPage = Integer.parseInt(req.getParameter("currentPage"));
-		System.out.println(product_id);
 		ProductService  productService=new ProductServiceImpl();
-		productService.deleteProduct(product_id);
-		resp.sendRedirect("product_page?currentPage="+currentPage+"&pageSize=5");	
+		product = productService.showProductByID(product_id);
+		req.setAttribute("product", product);
+		req.getRequestDispatcher("product_detail.jsp").forward(req, resp);
 	}
 }

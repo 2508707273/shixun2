@@ -23,4 +23,10 @@ public interface ProductService {
 	 * @param id
 	 */
 	void deleteProduct(int id);
+	/**
+	 * 展示商品详情
+	 * @param id
+	 * @return product
+	 */
+	public Product showProductByID(int id);
 }

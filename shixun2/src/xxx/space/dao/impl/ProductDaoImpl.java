@@ -120,4 +120,32 @@ public class ProductDaoImpl implements Productdao {
 
 	}
 
+	@Override
+	public Product selectProductByID(int id) throws SQLException {
+		Connection conn1= dbUtil.getConnection();
+		String sql = "SELECT * FROM `product` where id= ?";
+		
+		pst = conn1.prepareStatement(sql);
+		pst.setInt(1, id);
+		rs = pst.executeQuery();
+		
+		if (rs.next()) {
+			product = new Product();
+			product.setId(rs.getInt(1));
+			product.setName(rs.getString(2));
+			product.setCate_id(rs.getInt(3));
+			product.setThumbnail(rs.getString(4));
+			product.setInventory(rs.getInt(5));
+			product.setSales_volume(rs.getInt(6));
+			product.setPrice(rs.getDouble(7));
+			product.setSale_price(rs.getDouble(8));
+			product.setDetail_description(rs.getString(9));
+			product.setSelling_description(rs.getString(10));
+			product.setCreate_time(rs.getDate(11));
+			product.setSale_time(rs.getDate(12));
+		}
+		dbUtil.closeConnection(conn1, pst, rs);
+		return product;
+	}
+
 }

@@ -11,7 +11,7 @@ import xxx.space.service.ProductService;
 
 public class ProductServiceImpl implements ProductService {
 	Productdao pt =new ProductDaoImpl();
-	
+	Product product = null;
 	
 	/**
 	 * 页面展示产品信息
@@ -64,6 +64,18 @@ public class ProductServiceImpl implements ProductService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+
+	@Override
+	public Product showProductByID(int id) {
+		try {
+			product=pt.selectProductByID(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return product;
 	}
 	
 }
