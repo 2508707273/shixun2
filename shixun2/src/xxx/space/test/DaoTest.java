@@ -13,10 +13,10 @@ import xxx.space.entity.Manager;
 import xxx.space.entity.Product;
 
 public class DaoTest {
+	Managedao md=new ManagerDaoImpl();
+	Manager manager=null;
 	@Test
 	public void Test(){
-		Managedao md=new ManagerDaoImpl();
-		Manager manager=null;
 		try {
 			manager = md.selsctManageByIname("xxx");
 		} catch (SQLException e) {
@@ -44,6 +44,15 @@ public class DaoTest {
 		System.out.println(products.size());
 		for (Manager product : products) {
 			System.out.println(product);
+		}
+	}
+	@Test
+	public void TestREgister(){
+		try {
+			md.insertManager(manager);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

@@ -18,4 +18,10 @@ public interface ManagerService {
 	 * @return
 	 */
 	public List<Manager> ShowManager();
+	/**
+	 * 注册
+	 * @param newManager
+	 * @return
+	 */
+	public Result register(Manager newManager);
 }

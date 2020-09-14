@@ -69,7 +69,7 @@
 						
 						<div class="register-link m-t-15 text-center">
 							<p>
-								Don't have account ? <a href="#"> Sign Up Here</a>
+								Don't have account ? <a href="register.jsp"> Sign Up Here</a>
 							</p>
 						</div>
 					</form>
