@@ -372,25 +372,6 @@
                                             <p class="form-control-static"></p>
                                         </div>
                                     </div>
-                                    <!-- <div class="row form-group">
-                                        <div class="col col-md-3"><label class=" form-control-label">推荐</label></div>
-                                        <div class="col col-md-9">
-                                            <div class="form-check-inline form-check">
-                                                <label for="inline-radio1" class="form-check-label ">
-                                                    <input type="radio" id="inline-radio1" name="inline-radios"
-                                                        value="option1" class="form-check-input">是否精品&nbsp;&nbsp;
-                                                </label>
-                                                <label for="inline-radio2" class="form-check-label ">
-                                                    <input type="radio" id="inline-radio2" name="inline-radios"
-                                                        value="option2" class="form-check-input">是否热销&nbsp;&nbsp;
-                                                </label>
-                                                <label for="inline-radio3" class="form-check-label ">
-                                                    <input type="radio" id="inline-radio3" name="inline-radios"
-                                                        value="option3" class="form-check-input">是否新品&nbsp;&nbsp;
-                                            </div>
-                                        </div>
-                                    </div> -->
-
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input"
                                                 class=" form-control-label">库存数量</label></div>
@@ -470,19 +451,15 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary btn-sm">
+                                            <i class="fa fa-dot-circle-o"></i> 提交
+                                        </button>
+                                    </div>
                                 </form>
                             </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-dot-circle-o"></i> Submit
-                                </button>
-                                <button type="reset" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-ban"></i> Reset
-                                </button>
-                            </div>
+                            
                         </div>
-                        </form>
                     </div>
                 </div>
             </div>
