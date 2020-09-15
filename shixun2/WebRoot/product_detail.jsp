@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%
+    session.getAttribute("categories");
+    session.getAttribute("product");
+    %>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -341,14 +346,28 @@
                                     </div>
 
                                     <div class="row form-group">
+										
+                                    <label for="text-input" class=" form-control-label"></label> 
                                         <div class="col col-md-3"><label for="select"
                                                 class=" form-control-label">分类</label></div>
-                                        <div class="col-12 col-md-9">
-                                            <select name="select" id="select" class="form-control">
-                                                <option value="0">Please select</option>
-                                                <option value="1">Option #1</option>
-                                                <option value="2">Option #2</option>
-                                                <option value="3">Option #3</option>
+                                        <div class="col-12 col-md-3">
+                                            <select name="select" id="select1" class="form-control">
+                                            <option value="">----请选择----</option>
+                                            <c:forEach items="${categories}" var="categories">
+                                                <option value="${categories.id}">${categories.name}</option>
+                                                </c:forEach>
+                                            </select>
+                                            <p class="form-control-static"></p>
+                                        </div>
+                                        <div class="col-12 col-md-3">
+                                            <select name="select" id="select2" class="form-control" onChange="getChange();">
+                                                <option value="">----请选择----</option>
+                                            </select>
+                                            <p class="form-control-static"></p>
+                                        </div>
+                                        <div class="col-12 col-md-3">
+                                            <select name="select" id="select3" class="form-control">
+                                                <option value="">----请选择----</option>
                                             </select>
                                             <p class="form-control-static"></p>
                                         </div>
@@ -472,19 +491,51 @@
     </div><!-- .content -->
     </div><!-- /#right-panel -->
     <!-- Right Panel -->
-    <script src="assets/js/main.js"></script>
+    
     <script src="vendors/jquery/dist/jquery.min.js"></script>
+    <script src="assets/js/main.js"></script>
     <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="vendors/bootstrap/dist/js/bootstrap-datetimepicker.js"></script>
     <script src="vendors/bootstrap/dist/js/bootstrap-datetimepicker.zh-CN.js"></script>
 
     <script src="vendors/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="vendors/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
     <script type="text/javascript" src="assets/js/wangEditor.min.js"></script>
     
 
     <script type="text/javascript">
         window.onload = function () {
+        	$('#select1').change(function () {
+ 				var id = $(this).children('option:selected').val();
+ 				$.ajax({
+ 					"url" : "./ShowCategory",
+ 					"type" : "POST",
+ 					"data" : {"id":id},
+ 					dataType: 'json',
+ 					"success" : function(json) {
+ 						$("#select2").children().not(':eq(0)').remove();
+ 						$("#select3").children().not(':eq(0)').remove();
+ 						$.each(json, function(i, list) {
+                            $("#select2").append('<option value="'+list.id+'">' + list.name + '</option>');
+ 						})
+ 					}
+ 				})
+ 			});
+        	$('#select2').change(function () {
+ 				var id = $(this).children('option:selected').val();
+ 				$.ajax({
+ 					"url" : "./ShowCategory",
+ 					"type" : "POST",
+ 					"data" : {"id":id},
+ 					dataType: 'json',
+ 					"success" : function(json) {
+ 						$("#select3").children().not(':eq(0)').remove();
+ 						$.each(json, function(i, list) {
+                            $("#select3").append('<option value="'+list.id+'">' + list.name + '</option>');
+ 						})
+ 					}
+ 				})
+ 			});
+        	
             $('#datetimepicker').datetimepicker({
             	format:'yyyy-mm-dd',
                 language: "zh-CN",
@@ -511,6 +562,7 @@
            		minView:'month',
             	autoclose:true,
             });
+             
         }
     </script>
     <script type="text/javascript">
@@ -519,6 +571,7 @@
         editor.create()
         var editor2 = new E('#editor2')
         editor2.create()
+      	
     </script>
 
 </body>
