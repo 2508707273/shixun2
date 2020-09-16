@@ -114,6 +114,22 @@ public class Product {
 		this.create_time = create_time;
 		this.sale_time = sale_time;
 	}
+	public Product(int id, String name, int cate_id,  int inventory, int sales_volume, double price,
+			double sale_price, String detail_description, String selling_description, Date create_time,
+			Date sale_time) {
+		super();
+		this.id = id;
+		this.name = name;
+		Cate_id = cate_id;
+		this.inventory = inventory;
+		this.sales_volume = sales_volume;
+		this.price = price;
+		this.sale_price = sale_price;
+		this.detail_description = detail_description;
+		this.selling_description = selling_description;
+		this.create_time = create_time;
+		this.sale_time = sale_time;
+	}
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", Cate_id=" + Cate_id + ", thumbnail=" + thumbnail

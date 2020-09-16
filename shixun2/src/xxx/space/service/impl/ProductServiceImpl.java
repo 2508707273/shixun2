@@ -77,5 +77,19 @@ public class ProductServiceImpl implements ProductService {
 		}
 		return product;
 	}
+
+
+	@Override
+	public int UpdateProductByID(Product product) {
+		int i = 0 ;
+		try {
+			i = pt.UpdateProductByID(product);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return i;
+		
+	}
 	
 }

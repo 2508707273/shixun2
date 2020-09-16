@@ -28,7 +28,7 @@ public class ShowCategoryServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		System.out.println("into doPost");
+//		System.out.println("into doPost");
 		req.setCharacterEncoding("utf-8");
 		resp.setCharacterEncoding("utf-8");
 		resp.setContentType("text/html");

@@ -29,4 +29,9 @@ public interface ProductService {
 	 * @return product
 	 */
 	public Product showProductByID(int id);
+	/**
+	 * 修改产品
+	 * @param id
+	 */
+	public int UpdateProductByID(Product product);
 }

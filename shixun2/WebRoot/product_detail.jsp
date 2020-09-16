@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    <%
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%
     session.getAttribute("categories");
     session.getAttribute("product");
     %>
@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="vendors/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="vendors/themify-icons/css/themify-icons.css">
     <link rel="stylesheet" href="vendors/flag-icon-css/css/flag-icon.min.css">
-    
+
 
     <link rel="stylesheet" href="assets/css/style.css">
 
@@ -327,46 +327,50 @@
                                 <strong>产品信息</strong>
                             </div>
                             <div class="card-body card-block">
-                                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                <form action="" method="post" name="form1" enctype="multipart/form-data"
+                                    class="form-horizontal">
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input"
                                                 class=" form-control-label">商品编号</label></div>
                                         <div class="col-12 col-md-9">
                                             <p class="form-control-static">${product.id}</p><small
                                                 class="form-text text-muted">此项不可修改</small>
+                                            
                                         </div>
                                     </div>
+                                    <input id="PageContext" type="hidden" value="${pageContext.request.contextPath}" />
+                                    <input type="hidden" name="product_id" value="${product.id}" />
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input"
                                                 class=" form-control-label">商品名称</label></div>
                                         <div class="col-12 col-md-9"><input type="text" id="text-input"
-                                                name="text-input" placeholder=${product.name} class="form-control">
+                                                name="product_name" value=${product.name} class="form-control">
                                             <p class="form-control-static"></p>
                                         </div>
                                     </div>
 
                                     <div class="row form-group">
-										
-                                    <label for="text-input" class=" form-control-label"></label> 
+
+                                        <label for="text-input" class=" form-control-label"></label>
                                         <div class="col col-md-3"><label for="select"
                                                 class=" form-control-label">分类</label></div>
                                         <div class="col-12 col-md-3">
-                                            <select name="select" id="select1" class="form-control">
-                                            <option value="">----请选择----</option>
-                                            <c:forEach items="${categories}" var="categories">
-                                                <option value="${categories.id}">${categories.name}</option>
+                                            <select name="select1" id="select1" class="form-control">
+                                                <option value="">----请选择----</option>
+                                                <c:forEach items="${categories}" var="categories">
+                                                    <option value="${categories.id}">${categories.name}</option>
                                                 </c:forEach>
                                             </select>
                                             <p class="form-control-static"></p>
                                         </div>
                                         <div class="col-12 col-md-3">
-                                            <select name="select" id="select2" class="form-control" onChange="getChange();">
+                                            <select name="select2" id="select2" class="form-control">
                                                 <option value="">----请选择----</option>
                                             </select>
                                             <p class="form-control-static"></p>
                                         </div>
                                         <div class="col-12 col-md-3">
-                                            <select name="select" id="select3" class="form-control">
+                                            <select name="select3" id="select3" class="form-control">
                                                 <option value="">----请选择----</option>
                                             </select>
                                             <p class="form-control-static"></p>
@@ -375,8 +379,9 @@
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input"
                                                 class=" form-control-label">库存数量</label></div>
-                                        <div class="col col-md-3"><input type="text" id="text-input" name="text-input"
-                                                placeholder=${product.inventory} class="form-control">
+                                        <div class="col col-md-3"><input type="text" id="text-input"
+                                                name="product_inventory" value=${product.inventory}
+                                                class="form-control">
                                             <p class="form-control-static"></p>
                                         </div>
 
@@ -384,16 +389,17 @@
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input"
                                                 class=" form-control-label">销售数量</label></div>
-                                        <div class="col col-md-3"><input type="text" id="text-input" name="text-input"
-                                                placeholder=${product.sales_volume} class="form-control">
+                                        <div class="col col-md-3"><input type="text" id="text-input"
+                                                name="product_sales_volume" value=${product.sales_volume}
+                                                class="form-control">
                                             <p class="form-control-static"></p>
                                         </div>
                                     </div>
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input"
                                                 class=" form-control-label">定价</label></div>
-                                        <div class="col col-md-3"><input type="text" id="text-input" name="text-input"
-                                                placeholder=${product.price} class="form-control">
+                                        <div class="col col-md-3"><input type="text" id="text-input"
+                                                name="product_price" value=${product.price} class="form-control">
                                             <p class="form-control-static"></p>
                                         </div>
 
@@ -401,8 +407,9 @@
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input"
                                                 class=" form-control-label">售价</label></div>
-                                        <div class="col col-md-3"><input type="text" id="text-input" name="text-input"
-                                                placeholder=${product.sale_price} class="form-control">
+                                        <div class="col col-md-3"><input type="text" id="text-input"
+                                                name="product_sale_price" value=${product.sale_price}
+                                                class="form-control">
                                             <p class="form-control-static"></p>
                                         </div>
                                     </div>
@@ -410,8 +417,8 @@
                                         <div class="col col-md-3"><label for="text-input"
                                                 class=" form-control-label">添加时间</label></div>
                                         <div class="col col-md-3">
-                                            <input type="text" class="form-control" name="starttime" id="datetimepicker" value=${product.create_time}
-                                                 >
+                                            <input type="text" class="form-control" name="product_create_time"
+                                                id="datetimepicker" value=${product.create_time}>
                                             <p class="form-control-static"></p>
                                         </div>
                                     </div>
@@ -419,8 +426,8 @@
                                         <div class="col col-md-3"><label for="text-input"
                                                 class=" form-control-label">开售时间</label></div>
                                         <div class="col col-md-3">
-                                            <input type="text" class="form-control" name="starttime" id="datetimepicker2" value=${product.sale_time}
-                                                >
+                                            <input type="text" class="form-control" name="product_sale_time"
+                                                id="datetimepicker2" value=${product.sale_time}>
                                             <p class="form-control-static"></p>
                                         </div>
                                     </div>
@@ -452,13 +459,13 @@
                                         </div>
                                     </div>
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary btn-sm">
+                                        <button type="button" class="btn btn-primary btn-sm" onclick="getContent()">
                                             <i class="fa fa-dot-circle-o"></i> 提交
                                         </button>
                                     </div>
                                 </form>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -468,7 +475,7 @@
     </div><!-- .content -->
     </div><!-- /#right-panel -->
     <!-- Right Panel -->
-    
+
     <script src="vendors/jquery/dist/jquery.min.js"></script>
     <script src="assets/js/main.js"></script>
     <script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -477,69 +484,70 @@
 
     <script src="vendors/jquery-validation/dist/jquery.validate.min.js"></script>
     <script type="text/javascript" src="assets/js/wangEditor.min.js"></script>
-    
+
 
     <script type="text/javascript">
         window.onload = function () {
-        	$('#select1').change(function () {
- 				var id = $(this).children('option:selected').val();
- 				$.ajax({
- 					"url" : "./ShowCategory",
- 					"type" : "POST",
- 					"data" : {"id":id},
- 					dataType: 'json',
- 					"success" : function(json) {
- 						$("#select2").children().not(':eq(0)').remove();
- 						$("#select3").children().not(':eq(0)').remove();
- 						$.each(json, function(i, list) {
-                            $("#select2").append('<option value="'+list.id+'">' + list.name + '</option>');
- 						})
- 					}
- 				})
- 			});
-        	$('#select2').change(function () {
- 				var id = $(this).children('option:selected').val();
- 				$.ajax({
- 					"url" : "./ShowCategory",
- 					"type" : "POST",
- 					"data" : {"id":id},
- 					dataType: 'json',
- 					"success" : function(json) {
- 						$("#select3").children().not(':eq(0)').remove();
- 						$.each(json, function(i, list) {
-                            $("#select3").append('<option value="'+list.id+'">' + list.name + '</option>');
- 						})
- 					}
- 				})
- 			});
-        	
+            $('#select1').change(function () {
+                var id = $(this).children('option:selected').val();
+                $.ajax({
+                    "url": "./ShowCategory",
+                    "type": "POST",
+                    "data": { "id": id },
+                    dataType: 'json',
+                    "success": function (json) {
+                        $("#select2").children().not(':eq(0)').remove();
+                        $("#select3").children().not(':eq(0)').remove();
+                        $.each(json, function (i, list) {
+                            $("#select2").append('<option value="' + list.id + '">' + list.name + '</option>');
+                        })
+                    }
+                })
+            });
+            $('#select2').change(function () {
+                var id = $(this).children('option:selected').val();
+                $.ajax({
+                    "url": "./ShowCategory",
+                    "type": "POST",
+                    "data": { "id": id },
+                    dataType: 'json',
+                    "success": function (json) {
+                        $("#select3").children().not(':eq(0)').remove();
+                        $.each(json, function (i, list) {
+                            $("#select3").append('<option value="' + list.id + '">' + list.name + '</option>');
+                        })
+                    }
+                })
+            });
+
             $('#datetimepicker').datetimepicker({
-            	format:'yyyy-mm-dd',
+                format: 'yyyy-mm-dd',
                 language: "zh-CN",
                 todayHighlight: true,
                 minView: 2, //最精准的时间选择为日期0-分 1-时 2-日 3-月
                 weekStart: 1,
                 pickerPosition: "bottom-left",
-                todayBtn:true,
-                startView:'year',
-            	maxView:'year',
-           		minView:'month',
-            	autoclose:true,
+                todayBtn: true,
+                startView: 'year',
+                maxView: 'year',
+                minView: 'month',
+                autoclose: true,
             });
-             $('#datetimepicker2').datetimepicker({
-             	format:'yyyy-mm-dd',
+            $('#datetimepicker2').datetimepicker({
+                format: 'yyyy-mm-dd',
                 language: "zh-CN",
                 todayHighlight: true,
                 minView: 2, //最精准的时间选择为日期0-分 1-时 2-日 3-月
                 weekStart: 1,
                 pickerPosition: "bottom-left",
-                todayBtn:true,
-                startView:'year',
-            	maxView:'year',
-           		minView:'month',
-            	autoclose:true,
+                todayBtn: true,
+                startView: 'year',
+                maxView: 'year',
+                minView: 'month',
+                autoclose: true,
             });
-             
+            
+
         }
     </script>
     <script type="text/javascript">
@@ -548,7 +556,52 @@
         editor.create()
         var editor2 = new E('#editor2')
         editor2.create()
-      	
+        function getContent() {
+            
+            var text1 = editor.txt.html();
+            var text2 = editor2.txt.html();
+            var id = form1.product_id.value;
+            var name = form1.product_name.value;
+            var Cate_id = form1.select3.value;
+            var inventory = form1.product_inventory.value;
+            var sales_volume = form1.product_sales_volume.value;
+            var price = form1.product_price.value;
+            var sale_price = form1.product_sale_price.value;
+            var create_time = form1.product_create_time.value;
+            var sale_time = form1.product_sale_time.value;
+            // var pageContext = form1.pageContext.value;
+            // alert(pageContext);
+            $.ajax({
+                "url": "./UpdateProductServlet",
+                "type": "POST",
+                "data": {
+                    "id": id,
+                    "name": name,
+                    "Cate_id": Cate_id,
+                    "inventory": inventory,
+                    "sales_volume": sales_volume,
+                    "price": price,
+                    "sale_price": sale_price,
+                    "create_time": create_time,
+                    "sale_time": sale_time,
+                    "detail_description":text1,
+                    "selling_description":text2
+                },
+                dataType: 'json',
+                success: function (result) {
+                    if(result>0){
+                        alert("更新成功！");
+                        window.location.href = "product_page?currentPage=1&pageSize=5"
+                    }
+                },
+                error: function (result) {
+                    //失败之后
+                }
+
+            })
+
+
+        }
     </script>
 
 </body>

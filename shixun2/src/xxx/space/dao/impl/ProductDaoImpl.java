@@ -1,6 +1,7 @@
 package xxx.space.dao.impl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -146,6 +147,30 @@ public class ProductDaoImpl implements Productdao {
 		}
 		dbUtil.closeConnection(conn1, pst, rs);
 		return product;
+	}
+
+	@Override
+	public int UpdateProductByID(Product product) throws SQLException {
+		Connection conn1= dbUtil.getConnection();
+		String sql = "update product set name=?,Cate_id=?,thumbnail=?,inventory=?,sales_volume=?,"
+				+ "price=?,sale_price=?,detail_description=?,selling_description=?,create_time=?,sale_time=? where id=?";
+		pst = conn1.prepareStatement(sql);
+		pst.setString(1, product.getName());
+		pst.setInt(2, product.getCate_id());
+		pst.setString(3, product.getThumbnail());
+		pst.setInt(4, product.getInventory());
+		pst.setInt(5, product.getSales_volume());
+		pst.setDouble(6, product.getPrice());
+		pst.setDouble(7, product.getSale_price());
+		pst.setString(8, product.getDetail_description());
+		pst.setString(9, product.getSelling_description());
+		pst.setDate(10, new java.sql.Date( product.getCreate_time().getTime()));
+		pst.setDate(11, new java.sql.Date(product.getSale_time().getTime()));
+		pst.setInt(12, product.getId());
+		
+		int res=pst.executeUpdate();
+		dbUtil.closeConnection(conn1, pst,null);
+		return res;
 	}
 
 }
