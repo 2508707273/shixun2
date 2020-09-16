@@ -46,4 +46,11 @@ public interface Productdao {
 	 * @throws SQLException
 	 */
 	int UpdateProductByID(Product product)throws SQLException;
+	/**
+	 * 新增产品
+	 * @param product
+	 * @return 影响的行数
+	 * @throws SQLException
+	 */
+	int InsertProduct(Product product)throws SQLException;
 }

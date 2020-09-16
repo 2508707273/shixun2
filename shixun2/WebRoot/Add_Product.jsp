@@ -331,20 +331,9 @@
                                     class="form-horizontal">
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input"
-                                                class=" form-control-label">商品编号</label></div>
-                                        <div class="col-12 col-md-9">
-                                            <p class="form-control-static">${product.id}</p><small
-                                                class="form-text text-muted">此项不可修改</small>
-                                            
-                                        </div>
-                                    </div>
-                                    <input id="PageContext" type="hidden" value="${pageContext.request.contextPath}" />
-                                    <input type="hidden" name="product_id" value="${product.id}" />
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label for="text-input"
                                                 class=" form-control-label">商品名称</label></div>
                                         <div class="col-12 col-md-9"><input type="text" id="text-input"
-                                                name="product_name" value=${product.name} class="form-control">
+                                                name="product_name" value="" class="form-control">
                                             <p class="form-control-static"></p>
                                         </div>
                                     </div>
@@ -380,8 +369,7 @@
                                         <div class="col col-md-3"><label for="text-input"
                                                 class=" form-control-label">库存数量</label></div>
                                         <div class="col col-md-3"><input type="text" id="text-input"
-                                                name="product_inventory" value=${product.inventory}
-                                                class="form-control">
+                                                name="product_inventory" class="form-control" value=""   >
                                             <p class="form-control-static"></p>
                                         </div>
 
@@ -390,7 +378,7 @@
                                         <div class="col col-md-3"><label for="text-input"
                                                 class=" form-control-label">销售数量</label></div>
                                         <div class="col col-md-3"><input type="text" id="text-input"
-                                                name="product_sales_volume" value=${product.sales_volume}
+                                                name="product_sales_volume" value=""
                                                 class="form-control">
                                             <p class="form-control-static"></p>
                                         </div>
@@ -399,7 +387,7 @@
                                         <div class="col col-md-3"><label for="text-input"
                                                 class=" form-control-label">定价</label></div>
                                         <div class="col col-md-3"><input type="text" id="text-input"
-                                                name="product_price" value=${product.price} class="form-control">
+                                                name="product_price" value="" class="form-control">
                                             <p class="form-control-static"></p>
                                         </div>
 
@@ -408,7 +396,7 @@
                                         <div class="col col-md-3"><label for="text-input"
                                                 class=" form-control-label">售价</label></div>
                                         <div class="col col-md-3"><input type="text" id="text-input"
-                                                name="product_sale_price" value=${product.sale_price}
+                                                name="product_sale_price" value=""
                                                 class="form-control">
                                             <p class="form-control-static"></p>
                                         </div>
@@ -418,7 +406,7 @@
                                                 class=" form-control-label">添加时间</label></div>
                                         <div class="col col-md-3">
                                             <input type="text" class="form-control" name="product_create_time"
-                                                id="datetimepicker" value=${product.create_time}>
+                                                id="datetimepicker" value="">
                                             <p class="form-control-static"></p>
                                         </div>
                                     </div>
@@ -427,7 +415,7 @@
                                                 class=" form-control-label">开售时间</label></div>
                                         <div class="col col-md-3">
                                             <input type="text" class="form-control" name="product_sale_time"
-                                                id="datetimepicker2" value=${product.sale_time}>
+                                                id="datetimepicker2" value="">
                                             <p class="form-control-static"></p>
                                         </div>
                                     </div>
@@ -445,7 +433,6 @@
                                                 class=" form-control-label">商品详情</label></div>
                                         <div class="col col-sm-9">
                                             <div id="editor">
-                                                ${product.detail_description }
                                             </div>
                                         </div>
                                     </div>
@@ -454,7 +441,7 @@
                                                 class=" form-control-label">商品卖点</label></div>
                                         <div class="col col-sm-9">
                                             <div id="editor2">
-                                                ${product.selling_description }
+                                               
                                             </div>
                                         </div>
                                     </div>
@@ -560,7 +547,6 @@
             
             var text1 = editor.txt.html();
             var text2 = editor2.txt.html();
-            var id = form1.product_id.value;
             var name = form1.product_name.value;
             var Cate_id = form1.select3.value;
             var inventory = form1.product_inventory.value;
@@ -572,10 +558,9 @@
             // var pageContext = form1.pageContext.value;
             // alert(pageContext);
             $.ajax({
-                "url": "./UpdateProductServlet",
+                "url": "./AddProduct",
                 "type": "POST",
                 "data": {
-                    "id": id,
                     "name": name,
                     "Cate_id": Cate_id,
                     "inventory": inventory,
@@ -590,7 +575,7 @@
                 dataType: 'json',
                 success: function (result) {
                     if(result>0){
-                        alert("更新成功！");
+                        alert("新增成功！");
                         window.location.href = "product_page?currentPage=1&pageSize=5"
                     }
                 },

@@ -91,5 +91,18 @@ public class ProductServiceImpl implements ProductService {
 		return i;
 		
 	}
+
+
+	@Override
+	public int InsertProduct(Product product) {
+		int i = 0 ;
+		try {
+			i = pt.InsertProduct(product);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return i;
+	}
 	
 }

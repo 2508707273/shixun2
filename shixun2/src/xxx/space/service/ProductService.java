@@ -32,6 +32,13 @@ public interface ProductService {
 	/**
 	 * 修改产品
 	 * @param id
+	 * @return 影响的行数
 	 */
 	public int UpdateProductByID(Product product);
+	/**
+	 * 
+	 * @param product
+	 * @return 影响的行数
+	 */
+	public int InsertProduct(Product product);
 }

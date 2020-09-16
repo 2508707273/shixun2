@@ -351,7 +351,7 @@ li{
 						<div class="card">
 							<div class="card-header" >
 								<strong class="card-title">商品详情</strong>
-								<button type="button" style="float:right" onclick="javascrtpt:window.location.href='AddProduct'" class="btn btn-primary">增加</button>
+								<button type="button" style="float:right" onclick="javascrtpt:window.location.href='Add_Prepare'" class="btn btn-primary">增加</button>
 							</div>
 							<div class="card-body">
 								<table 
