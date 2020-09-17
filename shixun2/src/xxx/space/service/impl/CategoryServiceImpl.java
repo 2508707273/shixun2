@@ -52,4 +52,17 @@ public class CategoryServiceImpl implements CategoryService {
 		return categories;
 	}
 
+	@Override
+	public String ShowCNameByID(int id) {
+		String CName=null;
+		try {
+			CName = categorydao.selectCNameByID(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return CName;
+	}
+
 }

@@ -187,7 +187,7 @@ public class ProductDaoImpl implements Productdao {
 		pst.setDouble(7, product.getSale_price());
 		pst.setString(8, product.getDetail_description());
 		pst.setString(9, product.getSelling_description());
-		pst.setDate(10, new java.sql.Date( product.getCreate_time().getTime()));
+		pst.setDate(10, new java.sql.Date(product.getCreate_time().getTime()));
 		pst.setDate(11, new java.sql.Date(product.getSale_time().getTime()));
 		
 		

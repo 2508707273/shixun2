@@ -31,7 +31,9 @@ public class ShowProdectDetailsServlet extends HttpServlet{
 		CategoryService categoryService = new CategoryServiceImpl();
 		categories=categoryService.showAllCategory();
 		product = productService.showProductByID(product_id);
+		String CName = categoryService.ShowCNameByID(product.getCate_id());
 		req.setAttribute("product", product);
+		req.setAttribute("CName", CName);
 		req.setAttribute("categories", categories);
 		req.getRequestDispatcher("product_detail.jsp").forward(req, resp);
 	}

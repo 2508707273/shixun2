@@ -75,4 +75,15 @@ public class CategoryTest {
 		System.out.println(categories);
 		System.out.println(categories.size());
 	}
+	@Test
+	public void Test5(){
+		String CName=null;
+		try {
+			CName = categorydao.selectCNameByID(1001);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(CName);
+	}
 }

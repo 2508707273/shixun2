@@ -21,4 +21,10 @@ public interface CategoryService {
 	 * @return
 	 */
 	public List<Category> showPIDCategory(int id);
+	/**
+	 * 根据产品id返回其类目名称
+	 * @param id
+	 * @return
+	 */
+	public String ShowCNameByID(int id);
 }

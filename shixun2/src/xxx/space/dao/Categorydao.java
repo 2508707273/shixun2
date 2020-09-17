@@ -26,4 +26,11 @@ public interface Categorydao {
 	 * @throws SQLException
 	 */
 	List<Category> selectCategoryByPID(int id) throws SQLException;
+	/**
+	 * 根据类别id返回类的名称
+	 * @param id
+	 * @return 类别名称
+	 * @throws SQLException
+	 */
+	String selectCNameByID(int id) throws SQLException;
 }

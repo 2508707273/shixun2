@@ -8,9 +8,14 @@ import org.junit.Test;
 import xxx.space.dao.Productdao;
 import xxx.space.dao.impl.ProductDaoImpl;
 import xxx.space.entity.Product;
+import xxx.space.service.CategoryService;
+import xxx.space.service.ProductService;
+import xxx.space.service.impl.CategoryServiceImpl;
+import xxx.space.service.impl.ProductServiceImpl;
 
 public class ProductTest {
 	Productdao pt = new ProductDaoImpl();
+	Product prodect = null;
 	@Test
 	public void Test(){
 		List<Product> products = null;
@@ -57,5 +62,12 @@ public class ProductTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	@Test
+	public void Test5(){
+		ProductService  productService=new ProductServiceImpl();
+		prodect = productService.showProductByID(1000006);
+		System.out.println(prodect);
+	
 	}
 }

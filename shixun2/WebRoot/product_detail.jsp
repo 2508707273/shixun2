@@ -325,6 +325,8 @@
                         <div class="card">
                             <div class="card-header">
                                 <strong>产品信息</strong>
+                                <button type="button" style="float:right" onclick="javascrtpt:window.location.href='product_page?currentPage=1&pageSize=5'" class="btn btn-primary">返回</button>
+                                
                             </div>
                             <div class="card-body card-block">
                                 <form action="" method="post" name="form1" enctype="multipart/form-data"
@@ -335,7 +337,7 @@
                                         <div class="col-12 col-md-9">
                                             <p class="form-control-static">${product.id}</p><small
                                                 class="form-text text-muted">此项不可修改</small>
-                                            
+
                                         </div>
                                     </div>
                                     <input id="PageContext" type="hidden" value="${pageContext.request.contextPath}" />
@@ -358,7 +360,7 @@
                                             <select name="select1" id="select1" class="form-control">
                                                 <option value="">----请选择----</option>
                                                 <c:forEach items="${categories}" var="categories">
-                                                    <option value="${categories.id}">${categories.name}</option>
+                                                    <option value="${categories.id }">${categories.name}</option>
                                                 </c:forEach>
                                             </select>
                                             <p class="form-control-static"></p>
@@ -372,6 +374,7 @@
                                         <div class="col-12 col-md-3">
                                             <select name="select3" id="select3" class="form-control">
                                                 <option value="">----请选择----</option>
+                                                <option value="${product.cate_id}" selected>${CName} </option>
                                             </select>
                                             <p class="form-control-static"></p>
                                         </div>
@@ -434,8 +437,8 @@
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="file-input"
                                                 class=" form-control-label">上传图片</label></div>
-                                        <div class="col-12 col-md-9"><input type="file" id="file-input"
-                                                name="file-input" class="form-control-file">
+                                        <div class="col-12 col-md-9">
+                                                <input type="file" id="file" onchange="btu()" class="form-control-file">
                                             <p class="form-control-static"></p>
                                         </div>
 
@@ -546,18 +549,41 @@
                 minView: 'month',
                 autoclose: true,
             });
-            
+
 
         }
     </script>
     <script type="text/javascript">
+        var thumbnail = "";
+        function btu() {
+            var name = $("#name").val();
+            var file = $("#file")[0].files[0];//新特性，获取文件对象
+            var fordata = new FormData();//新特性，得到formData对象，把获取的值扔进去，相当于map
+            fordata.append("name", name);
+            fordata.append("file", file);
+            console.log(file)
+            $.ajax({
+            	async:false,
+                url: "UpdataFile",
+                data: fordata,
+                cache: false,
+                processData: false, //必须写
+                contentType: false, //必须写
+                type: "post",
+                success: function (data) {
+                    thumbnail = data;
+                }
+
+            })
+
+        }
         var E = window.wangEditor
         var editor = new E('#editor')
         editor.create()
         var editor2 = new E('#editor2')
         editor2.create()
         function getContent() {
-            
+
             var text1 = editor.txt.html();
             var text2 = editor2.txt.html();
             var id = form1.product_id.value;
@@ -578,18 +604,19 @@
                     "id": id,
                     "name": name,
                     "Cate_id": Cate_id,
+                    "thumbnail":thumbnail,
                     "inventory": inventory,
                     "sales_volume": sales_volume,
                     "price": price,
                     "sale_price": sale_price,
                     "create_time": create_time,
                     "sale_time": sale_time,
-                    "detail_description":text1,
-                    "selling_description":text2
+                    "detail_description": text1,
+                    "selling_description": text2
                 },
                 dataType: 'json',
                 success: function (result) {
-                    if(result>0){
+                    if (result > 0) {
                         alert("更新成功！");
                         window.location.href = "product_page?currentPage=1&pageSize=5"
                     }

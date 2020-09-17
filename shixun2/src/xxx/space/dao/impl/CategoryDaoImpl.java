@@ -26,7 +26,7 @@ public class CategoryDaoImpl implements Categorydao {
 		Connection conn1 = dbUtil.getConnection();
 		pst = conn1.prepareStatement(sql);
 		rs = pst.executeQuery();
-		
+
 		while (rs.next()) {
 			category = new Category();
 			category.setId(rs.getInt(1));
@@ -44,7 +44,7 @@ public class CategoryDaoImpl implements Categorydao {
 	public Category selectCategoryByID(int id) throws SQLException {
 		String sql = "SELECT * FROM category where id= ?";
 
-		Connection conn1= dbUtil.getConnection();
+		Connection conn1 = dbUtil.getConnection();
 
 		pst = conn1.prepareStatement(sql);
 		pst.setInt(1, id);
@@ -64,13 +64,13 @@ public class CategoryDaoImpl implements Categorydao {
 	@Override
 	public List<Category> selectCategoryByPID(int id) throws SQLException {
 		String sql = "SELECT * FROM category where p_id = ?";
-		Connection conn1= dbUtil.getConnection();
-		
+		Connection conn1 = dbUtil.getConnection();
+
 		List<Category> categorys = new ArrayList<Category>();
 		pst = conn1.prepareStatement(sql);
 		pst.setInt(1, id);
 		rs = pst.executeQuery();
-		
+
 		while (rs.next()) {
 			category = new Category();
 			category.setId(rs.getInt(1));
@@ -80,9 +80,25 @@ public class CategoryDaoImpl implements Categorydao {
 			category.setOrder_weight(rs.getInt(5));
 			categorys.add(category);
 		}
-//		System.out.println(categorys);
+		// System.out.println(categorys);
 		dbUtil.closeConnection(conn1, pst, rs);
 		return categorys;
+	}
+
+	@Override
+	public String selectCNameByID(int id) throws SQLException {
+		String sql = "SELECT name FROM category where id = ?";
+		Connection conn1 = dbUtil.getConnection();
+
+		pst = conn1.prepareStatement(sql);
+		pst.setInt(1, id);
+		rs = pst.executeQuery();
+		String CName = null;
+		if (rs.next()) {
+			CName = rs.getString(1);
+		}
+		dbUtil.closeConnection(conn1, pst, rs);
+		return CName;
 	}
 
 }
