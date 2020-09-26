@@ -15,7 +15,7 @@ public interface ProductService {
 	 * 分页展示商品
 	 * @param currentPage
 	 * @param pageSize
-	 * @return
+	 * @return PageBean->product+总page，当前，分页，
 	 */
 	public PageBean<Product> showPageByPage(int currentPage,int pageSize);
 	/**

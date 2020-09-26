@@ -12,7 +12,7 @@ public class DbUtil {
 	private static DataSource dataSource;//数据源
 	
 	static{
-		InputStream resInputStream = DbUtil.class.getClassLoader().getResourceAsStream("xxx/sapce/properties/db2.properties");
+		InputStream resInputStream = DbUtil.class.getClassLoader().getResourceAsStream("xxx/sapce/properties/db.properties");
 		Properties properties =  new Properties();
 		try {
 			properties.load(resInputStream);
